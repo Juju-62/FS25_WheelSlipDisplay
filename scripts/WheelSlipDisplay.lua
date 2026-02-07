@@ -1,28 +1,29 @@
--- FS25 API Implementation for Wheel Slip Display
+-- WheelSlipDisplay.lua
 
--- Function to detect wheels using vehicle.spec_wheels and display slip ratio with dynamic colors
-function updateWheelSlipDisplay(vehicle)
-    local wheels = vehicle.spec_wheels.wheels
-    for i, wheel in ipairs(wheels) do
-        if wheel.slipRatio then
-            local slipRatio = wheel.slipRatio
-            local color = getColorForSlip(slipRatio)
-            -- Code to display the slip ratio with the chosen color
-            displaySlipRatio(wheel, slipRatio, color)
-        end
-    end
+-- This script integrates with the FS25 HUD to display wheel slip
+
+local WheelSlipDisplay = {}
+
+-- API for getting wheel slip data
+function WheelSlipDisplay:getWheelSlip()
+    -- Replace with real API call to Fetch wheel slip data
+    return { leftSlip = 0.1, rightSlip = 0.3 }  -- Example data
 end
 
-function getColorForSlip(slipRatio)
-    if slipRatio < 0.1 then
-        return "green"
-    elseif slipRatio < 0.3 then
-        return "yellow"
-    else
-        return "red"
-    end
+-- Function to display wheel slip on HUD
+function WheelSlipDisplay:displaySlip()
+    local wheelSlipData = self:getWheelSlip()
+    
+    -- Calculate colors based on slip values
+    local leftColor = wheelSlipData.leftSlip > 0.5 and "red" or "green"
+    local rightColor = wheelSlipData.rightSlip > 0.5 and "red" or "green"
+    
+    -- Display on HUD (replace with actual FS25 HUD API)
+    FS25:HUD:display("Left Wheel Slip: ", wheelSlipData.leftSlip, leftColor)
+    FS25:HUD:display("Right Wheel Slip: ", wheelSlipData.rightSlip, rightColor)
 end
 
-function displaySlipRatio(wheel, slipRatio, color)
-    -- Implement the display logic here, using the specified color and slipRatio
-end
+-- Call the display function
+WheelSlipDisplay:displaySlip()  
+
+return WheelSlipDisplay
