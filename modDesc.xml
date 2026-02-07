@@ -1,12 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<modDesc descVersion="78">
-    <author>Juju-62</author>
+<mod>
+    <name>Your Mod Name</name>
+    <description>Your mod description goes here.</description>
+    <main>YourMainEntryPointClass</main>
     <version>1.0.0</version>
-    <title>Wheel Slip Display</title>
-    <description>Displays wheel slip percentage by wheel with dynamic color coding (Green/Orange/Red) under the clock</description>
-    <iconFilename>icon.dds</iconFilename>
-    <multiplayer supported="true"/>
-    <extraSourceFiles>
-        <sourceFile filename="scripts/WheelSlipDisplay.lua"/>
-    </extraSourceFiles>
-</modDesc>
+    <author>Your Name</author>
+</mod>
